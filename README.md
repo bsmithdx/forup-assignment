@@ -3,45 +3,48 @@
 ## Workplan
 
 ### Frontend
--[x] Set up basic single page React app in blade template
--[ ] API Integration
-    -[x] Create search component scaffolding (search bar, character grid, etc)
-    -[ ] Create service to make API calls to backend (maybe use React Query?)
-    -[ ] use react hooks to track state of query string and fetch results (using debounce function on string change)
-    -[ ] pass query results as props to character grid and display dynamically
--[ ] Favorites
-    -[ ] Create new Components to handle viewing list of existing favorite character lists with button to create new list by name
-        -[ ] rendering view should query list of character lists and pass as props to new CharacterListGrid component
-          -[ ] Display Name and total number of favorites in each row
-          -[ ] add delete button to each row in CharacterListGrid and handle interaction
-          -[ ] add link to open new individual CharacterList in character grid (hopefully re-use existing component in some way)
-            -[ ] FavoriteCharacterGrid needs delete button (and interaction logic) vs new favorite button (refactor to pass as children?)
-            -[ ] FavoriteCharacterGrid also needs to display total number of favorites outside of table
-          -[ ] view needs button with functionality to create new CharacterList via POST request. Need to detect validation to handle known error if name already exists.
-    -[ ] Add favorite functionality to search charactergrid
-        -[ ] modal that displays checkbox list of all CharacterLists by name
-        -[ ] modal needs submit button to send request to add character as favorite to all selected lists, then close modal
-        - Not sure how/if we can detect existing favorites in modal using existing schema choice. Will leave for now.
-    -[ ] Handle navigation between Search and favorites functionality/views (probably just use state)
-- [ ] make sure components are styled and responsive
+
+- [x] Set up basic single page React app in blade template
+- [ ] API Integration
+    - [x] Create search component scaffolding (search bar, character grid, etc)
+    - [ ] Create service to make API calls to backend (maybe use React Query?)
+    - [ ] use react hooks to track state of query string and fetch results (using debounce function on string change)
+    - [ ] pass query results as props to character grid and display dynamically
+- [ ] Favorites
+    - [ ] Create new Components to handle viewing list of existing favorite character lists with button to create new list by name
+         - [ ] rendering view should query list of character lists and pass as props to new CharacterListGrid component
+           - [ ] Display Name and total number of favorites in each row
+          - [ ] add delete button to each row in CharacterListGrid and handle interaction
+          - [ ] add link to open new individual CharacterList in character grid (hopefully re- use existing component in some way)
+            - [ ] FavoriteCharacterGrid needs delete button (and interaction logic) vs new favorite button (refactor to pass as children?)
+            - [ ] FavoriteCharacterGrid also needs to display total number of favorites outside of table
+          - [ ] view needs button with functionality to create new CharacterList via POST request. Need to detect validation to handle known error if name already exists.
+    - [ ] Add favorite functionality to search charactergrid
+        - [ ] modal that displays checkbox list of all CharacterLists by name
+        - [ ] modal needs submit button to send request to add character as favorite to all selected lists, then close modal
+        -  Not sure how/if we can detect existing favorites in modal using existing schema choice. Will leave for now.
+    - [ ] Handle navigation between Search and favorites functionality/views (probably just use state)
+-  [ ] make sure components are styled and responsive
+
 ### Backend
--[ ] API Integration
-    -[x] add service to wrap Guzzle client to send requests to 3rd party API
-    -[ ] Add routes and controller to request items from the 3rd party API and filter by name if applicable (limit to 100 if possible)
-    -[ ] Marshal json results into array of Character DTOs for data integrity
-      -[ ] CharacterDTO includes: Name, Gender, Culture, Alias, url (external id), and timestamp (either empty or can be used when marked as favorite)
-    -[ ] Add tests of controller methods (mock API or not?)
-    -[ ] Add test of CharacterDTO creation through static constructor method
--[ ] Favorites
-    -[ ] Create a CharacterList model
-        -[ ] should save name, timestamps, total number of favorites (either as data or derived), and serialized json from array of Character DTOs (need to add timestamp when favorited to DTO)
-        - (just saving snapshots of data and keeping the 3rd party API as the source of truth rather than trying to normalize into local database and keep data synced)
-    -[ ] Add routes and controller to list, create, update, and delete lists of characters (CharacterList)
-        -[ ] List should return in alphabetical order by CharacterList name
-        -[ ] Create logic needs validation to handle duplicate name conflict
-        -[ ] Updating is how we add favorites (need to figure out how to handle saving to multiple lists with no Character resource?)
-          -[ ] Updating should save favorites in order of favorited timestamp
-    -[ ] Add tests of controller methods
+
+- [ ] API Integration
+    - [x] add service to wrap Guzzle client to send requests to 3rd party API
+    - [x] Add routes and controller to request items from the 3rd party API and filter by name if applicable (limit to 100 if possible)
+    - [ ] Marshal json results into array of Character DTOs for data integrity
+      - [ ] CharacterDTO includes: Name, Gender, Culture, Alias, url (external id), and timestamp (either empty or can be used when marked as favorite)
+    - [ ] Add tests of controller methods (mock API or not?)
+    - [ ] Add test of CharacterDTO creation through static constructor method
+- [ ] Favorites
+    - [ ] Create a CharacterList model
+        - [ ] should save name, timestamps, total number of favorites (either as data or derived), and serialized json from array of Character DTOs (need to add timestamp when favorited to DTO)
+        -  (just saving snapshots of data and keeping the 3rd party API as the source of truth rather than trying to normalize into local database and keep local data synced with API)
+    - [ ] Add routes and controller to list, create, update, and delete lists of characters (CharacterList)
+        - [ ] List should return in alphabetical order by CharacterList name
+        - [ ] Create logic needs validation to handle duplicate name conflict
+        - [ ] Updating is how we add favorites (need to figure out how to handle saving to multiple lists with no Character resource?)
+          - [ ] Updating should save favorites in order of favorited timestamp
+    - [ ] Add tests of controller methods
 
 # Project summary
 We want to provide our users with the opportunity to search through a list of products/items/names, choose their favorites, and have them saved off for later use. This should be built with responsive design in mind and work functionally across all major browsers (Chrome/Firefox/Safari/Edge).
