@@ -31,10 +31,11 @@
 - [ ] API Integration
     - [x] add service to wrap Guzzle client to send requests to 3rd party API
     - [x] Add routes and controller to request items from the 3rd party API and filter by name if applicable (limit to 100 if possible)
-    - [ ] Marshal json results into array of Character DTOs for data integrity
-      - [ ] CharacterDTO includes: Name, Gender, Culture, Alias, url (external id), and timestamp (either empty or can be used when marked as favorite)
-    - [ ] Add tests of controller methods (mock API or not?)
-    - [ ] Add test of CharacterDTO creation through static constructor method
+    - [x] Marshal json results into array of Character DTOs for data integrity
+      - [x] CharacterDTO includes: Name, Gender, Culture, Alias, url (external id), and timestamp (either empty or can be used when marked as favorite)
+      - [x] Create CharacterDTOCollection to house array of CharacterDTO objects
+    - [x] Add tests of controller/service methods (mock API or not?)
+    - [x] Add test of CharacterDTO creation through static constructor method
 - [ ] Favorites
     - [ ] Create a CharacterList model
         - [ ] should save name, timestamps, total number of favorites (either as data or derived), and serialized json from array of Character DTOs (need to add timestamp when favorited to DTO)

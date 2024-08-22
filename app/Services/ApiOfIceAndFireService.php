@@ -6,7 +6,6 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Support\Facades\Log;
 
 class ApiOfIceAndFireService
 {
@@ -15,15 +14,12 @@ class ApiOfIceAndFireService
     )
     {}
 
-    public function getCharacters(string $name = '', $pageSize = 50)
+    /**
+     * @throws GuzzleException
+     */
+    public function getCharacters(string $name = '', $pageSize = 50): string
     {
         $uri = "characters/?pageSize={$pageSize}" . ($name ? "&name={$name}" : '');
-
-        try {
-            return json_decode($this->client->request('GET', $uri)->getBody()->getContents(), true);
-        } catch (GuzzleException $exception) {
-            Log::warning('getCharacters error: ' . $exception->getMessage(), ['exception' => $exception]);
-            return [];
-        }
+        return $this->client->request('GET', $uri)->getBody()->getContents();
     }
 }

@@ -68,6 +68,6 @@ class ApiOfIceAndFireServiceTest extends TestCase
         /** @var ApiOfIceAndFireService $service */
         $service = app(ApiOfIceAndFireService::class);
         $characters = $service->getCharacters('Jon Snow');
-        $this->assertEqualsCanonicalizing($expected, $characters);
+        $this->assertEqualsCanonicalizing($expected, json_decode($characters, true));
     }
 }
