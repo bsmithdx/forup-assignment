@@ -19,7 +19,14 @@ class ApiOfIceAndFireService
      */
     public function getCharacters(string $name = '', $pageSize = 50): string
     {
-        $uri = "characters/?pageSize={$pageSize}" . ($name ? "&name={$name}" : '');
-        return $this->client->request('GET', $uri)->getBody()->getContents();
+        $options = [
+            'query' => [
+                'pageSize' => $pageSize,
+            ]
+        ];
+        if ($name) {
+            $options['query']['name'] = $name;
+        }
+        return $this->client->request('GET', 'characters/', $options)->getBody()->getContents();
     }
 }
