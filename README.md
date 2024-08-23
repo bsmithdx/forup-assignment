@@ -1,15 +1,27 @@
 # Brendan's Notes
 
-## Workplan
+## Local Environment
+The tech stack I chose is a Laravel backend with a React SPA front end styled with TailwindCSS
+- The local environment uses Laravel Sail (Docker). Follow the instructions below for setup.
+1. Make sure you have Docker, PHP, and Composer installed
+2. Copy the `.env.example` file to `.env`
+3. run `composer install`
+4. run `./vendor/bin/sail up -d`
+5. run `./vendor/bin/sail artisan migrate`
+6. run `./vendor/bin/sail npm install`
+7. run `./vendor/bin/sail npm run dev`
+8. access application at `http://localhost`
+9. run phpunit tests with `./vendor/bin/sail artisan test`
+## Work plan
 
 ### Frontend
 
 - [x] Set up basic single page React app in blade template
-- [ ] API Integration
+- [x] API Integration
     - [x] Create search component scaffolding (search bar, character grid, etc)
-    - [ ] Create service to make API calls to backend (maybe use React Query?)
-    - [ ] use react hooks to track state of query string and fetch results (using debounce function on string change)
-    - [ ] pass query results as props to character grid and display dynamically
+    - [x] Create service to make API calls to backend (maybe use React Query?)
+    - [x] use react hooks to track state of query string and fetch results (using debounce function on string change)
+    - [x] pass query results as props to character grid and display dynamically
 - [ ] Favorites
     - [ ] Create new Components to handle viewing list of existing favorite character lists with button to create new list by name
          - [ ] rendering view should query list of character lists and pass as props to new CharacterListGrid component
@@ -28,7 +40,7 @@
 
 ### Backend
 
-- [ ] API Integration
+- [x] API Integration
     - [x] add service to wrap Guzzle client to send requests to 3rd party API
     - [x] Add routes and controller to request items from the 3rd party API and filter by name if applicable (limit to 100 if possible)
     - [x] Marshal json results into array of Character DTOs for data integrity
@@ -43,7 +55,7 @@
     - [ ] Add routes and controller to list, create, update, and delete lists of characters (CharacterList)
         - [ ] List should return in alphabetical order by CharacterList name
         - [ ] Create logic needs validation to handle duplicate name conflict
-        - [ ] Updating is how we add favorites (need to figure out how to handle saving to multiple lists with no Character resource?)
+        - [ ] Updating is how we add favorites (need to figure out how to handle saving to multiple lists with no Character resource and model relationships?)
           - [ ] Updating should save favorites in order of favorited timestamp
     - [ ] Add tests of controller methods
 
