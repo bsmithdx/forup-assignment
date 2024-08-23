@@ -16,6 +16,6 @@ class CharactersController extends Controller
         $nameFilter = $request->input('name') ?: '';
 
         $characters = $service->getCharactersFromApi($nameFilter);
-        return response()->json($characters);
+        return response()->json($characters->toArray());
     }
 }

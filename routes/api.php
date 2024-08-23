@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CharactersController;
 use App\Http\Controllers\CharacterListsController;
 
-Route::prefix('api')->group(function () {
+Route::prefix('v1')->group(function () {
     //Character routes
     Route::get('/characters', [CharactersController::class, 'getCharacters']);
     //CharacterList routes

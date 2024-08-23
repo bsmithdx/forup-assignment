@@ -1,10 +1,10 @@
 import React from 'react'
-import GotCharacterSearchGrid from "./GotCharacterSearchGrid.jsx";
+import GotCharacterSearch from "./GotCharacterSearch.jsx"
 
 const App = () => {
     return (
-        <GotCharacterSearchGrid />
+        <GotCharacterSearch />
     )
 }
 
-export default App;
+export default App
