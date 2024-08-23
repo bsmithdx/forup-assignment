@@ -3,25 +3,26 @@ import CharacterTableRow from "./CharacterTableRow.jsx"
 
 const CharacterTable = ({ items }) => {
     return (
-        <div>
-            <table className={"min-w-full divide-y shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"}
-            >
-                <thead className={"bg-gray-400 border-solid border-b-2 border-black"}>
-                <tr>
-                    <td className={"border-solid border-r-2 border-black"}>Name</td>
-                    <td className={"border-solid border-r-2 border-black"}>Alias</td>
-                    <td className={"border-solid border-r-2 border-black"}>Gender</td>
-                    <td>Culture</td>
-                </tr>
-                </thead>
-                <tbody className={"bg-gray-200"}>
-                {items.map((character) => (
-                   <CharacterTableRow key={character.url} character={character} />
-                ))}
-                </tbody>
-            </table>
+        <div className="flex flex-col h-screen">
+            <div className="flex-grow overflow-auto">
+                <table className={"relative w-full border rounded text-gray-700"}>
+                    <thead>
+                    <tr>
+                        <th className={"sticky -top-1 border border-black bg-gray-400 py-2"}>Name</th>
+                        <th className={"sticky -top-1 border border-black bg-gray-400 py-2"}>Alias</th>
+                        <th className={"sticky -top-1 border border-black bg-gray-400 py-2"}>Gender</th>
+                        <th className={"sticky -top-1 border border-black bg-gray-400 py-2"}>Culture</th>
+                    </tr>
+                    </thead>
+                    <tbody className={"divide-y bg-gray-200"}>
+                    {items.map((character) => (
+                        <CharacterTableRow key={character.url} character={character}/>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    )
-}
+            )
+            }
 
-export default CharacterTable
+            export default CharacterTable
